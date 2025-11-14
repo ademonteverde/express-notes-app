@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express Notes App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="layout">
+        <section class="editor">
+            <h1>Notes</h1>
+            <form id="note-form">
+                <div class="form-header">
+                    <span id="form-mode">New Note</span>
+                    <button type="button" id="form-clear" class="secondary hidden">
+                        Cancel Edit
+                    </button>
+                </div>
+                <label>
+                    Title:
+                    <input id="title" type="text" placeholder="Note title" required />
+                </label>
+                <label>
+                    Content
+                    <textarea id="content" rows="6" placeholder="Write your note here..." required></textarea>
+                </label>
+
+                <button type="submit">Save Note</button>
+            </form>
+        </section>
+
+        <section class="list">
+            <h2>Saved Notes</h2>
+            <input
+                id="search"
+                type="search"
+                placeholder="Search notes..."
+                autocomplete="off"
+            />
+            <ul id="notes-list"></ul>
+        </section>
+    </main>
+    <script src="app.js"></script>
+    </body>
+</html>

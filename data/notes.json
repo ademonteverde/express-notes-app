@@ -1,0 +1,21 @@
+[
+  {
+    "id": "mhy589b2-psvxn4",
+    "title": "First Note",
+    "content": "This is my first note.",
+    "createdAt": "2025-11-14T00:52:23.198Z"
+  },
+  {
+    "id": "mhy58i8j-vzmqaz",
+    "title": "Second Note",
+    "content": "My second note",
+    "createdAt": "2025-11-14T00:52:34.771Z"
+  },
+  {
+    "id": "mhy58yz2-l8ej9y",
+    "title": "Edited this note",
+    "content": "I have edited this note.",
+    "createdAt": "2025-11-14T00:52:56.462Z",
+    "updatedAt": "2025-11-14T00:54:10.984Z"
+  }
+]

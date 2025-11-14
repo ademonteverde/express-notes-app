@@ -21,16 +21,21 @@ async function fetchNotes() {
 
 // Render notes to the list
 function renderNotes() {
-  const q = searchInput.value.toLowerCase();
+  const raw = searchInput.value || "";
+  const q = raw.trim().toLowerCase();
+  
   listEl.textContent = "";
 
   notes
-    .filter(
-      (note) =>
-        note.title.toLowerCase().includes(q) ||
-        note.content.toLowerCase().includes(q)
+    .filter((note) => {
+      const title = (note.title ?? "").toLowerCase();
+      const content = (note.content ?? "").toLowerCase();
+      return title.includes(q) || content.includes(q);
+    })
+    .sort((a, b) => 
+      new Date(b.createdAt) - 
+      new Date(a.createdAt)
     )
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .forEach((note) => {
       const li = document.createElement("li");
       li.className = "note-item";
@@ -72,6 +77,7 @@ function renderNotes() {
     });
 }
 
+// Enter edit mode for a note
 function enterEditMode(note) {
   editingId = note.id;
   titleInput.value = note.title;
@@ -82,6 +88,7 @@ function enterEditMode(note) {
   clearBtn.classList.remove("hidden");
 }
 
+// Reset form to initial state 
 function resetForm() {
   editingId = null;
   titleInput.value = "";
@@ -92,7 +99,7 @@ function resetForm() {
   clearBtn.classList.add("hidden");
 }
 
-
+// Update an existing note
 async function updateNote(id, data) {
   const res = await fetch(`/api/notes/${id}`, {
     method: "PUT",
@@ -108,6 +115,7 @@ async function updateNote(id, data) {
     renderNotes();
 }
 
+// Delete a note
 async function deleteNote(id) {
   const res = await fetch(`/api/notes/${id}`, {
     method: "DELETE"
@@ -122,7 +130,6 @@ async function deleteNote(id) {
     if (editingId === id) resetForm();
     resetForm();
 }
-
 
 // Create a new note
 async function createNote(note) {
@@ -159,6 +166,7 @@ form.addEventListener("submit", async (e) => {
     resetForm();
 });
 
+// Clear button (Cancel Edit Btn)
 clearBtn.addEventListener("click", (e) => {
   e.preventDefault();
   resetForm();

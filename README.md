@@ -12,7 +12,8 @@ All notes are stored in a local JSON file—no external database required.
 
 ## Stack
 
-- **Node.js + Express**
+- **Express.js (Router + Controllers)**
+- **Node.js**
 - **File-based JSON storage**
 - **Vanilla JavaScript**
 - **Nodemon** for development
@@ -37,7 +38,16 @@ npm start     # start with node
 | GET    | /api/notes/:id      | Get a single note      |
 | POST   | /api/notes          | Create a new note      |
 | PUT    | /api/notes/:id   | Update an existing note |
+| PATCH  | /api/notes/:id       | Partially update a note              |
 | DELETE | /api/notes/:id      | Delete a note          |
+
+### 🔍 Search Example
+
+```
+GET /api/notes?search=hello
+```
+
+Returns notes where the title or content contains **"hello"** (case-insensitive).
 
 ---
 
@@ -68,6 +78,8 @@ data/notes.json
 - Timestamps for created/updated notes  
 - Clean, simple UI  
 - No database needed — everything runs locally
+- Clean, responsive UI  
+- Organized project structure with **controllers + routes**
 
 ---
 
